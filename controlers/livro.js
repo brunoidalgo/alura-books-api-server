@@ -14,11 +14,10 @@ function getLivro(req, res) {
     try {
         const id = req.params.id;
         const livro = getLivroPorId(id);
-        if(!livro) {
-            res.send("Livro não existe")
+        if(livro && Number(id)) {
+            res.send(livro);
         } else {
-            res.status(422);
-            res.send("Id inválido")
+            res.send(`Livro ${id} não existe`);
         }
     } catch (error) {
         res.status(500);
